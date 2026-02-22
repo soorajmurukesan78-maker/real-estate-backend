@@ -1,5 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const propertySchema=new mongoose.Schgema({
+    title:String,
+    location:String,
+    price:String,
+    type:String
+)};
+const property=mongoose.model("Property",propertySchema);
+    
 const cors = require("cors");
 require("dotenv").config();
 
@@ -14,6 +22,15 @@ mongoose.connect(process.env.MONGO_URI)
 
 app.get("/", (req, res) => {
     res.send("Backend is running 🚀");
+});
+app.get("/properties",async(req,res)=>{
+   const properties=await Property.find();
+    res.json(properties);
+});
+app.post("/properties,async(req,res)=>{
+   const newProperty=new Property(req.body);
+   await.newProperty.save();
+   res.json(newProperty);
 });
 
 app.listen(process.env.PORT || 5000, () => {
