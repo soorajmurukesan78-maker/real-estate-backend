@@ -27,6 +27,12 @@ const Property = mongoose.model("Property", propertySchema);
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
+app.get("/properties", (req, res) => {
+  res.json([
+    { title: "Test Property 1", location: "Mumbai", price: "₹1 Cr" },
+    { title: "Test Property 2", location: "Bangalore", price: "₹80 L" }
+  ]);
+});
 
 // GET All Properties
 app.get("/properties", async (req, res) => {
